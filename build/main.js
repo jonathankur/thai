@@ -38,6 +38,7 @@ var CheckoutPage = /** @class */ (function () {
         this.payment = '';
         this.paycard = '';
         this.pmode = 1;
+        this.notes = '';
         this.stripe_pub = '';
         this.total = 0.00;
         this.allok = false;
@@ -140,10 +141,9 @@ var CheckoutPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-checkout',template:/*ion-inline-start:"/var/www/html/ionic/thai/src/pages/checkout/checkout.html"*/'<ion-header no-border no-shadow>\n	<ion-navbar align-title="center" class="backgroundTransparent">\n		<ion-title>THAI ORCHID</ion-title>\n	</ion-navbar>\n</ion-header>\n<ion-content no-padding>\n <ion-item padding text-wrap no-lines>\n  <ion-row>\n   <ion-col col-sm-6>TOTAL</ion-col>\n   <ion-col col-sm-6 text-right>${{ total }}</ion-col>\n  </ion-row>\n </ion-item>\n <ion-item>\n  <ion-label>Notes</ion-label>\n  <ion-textarea rows="3" placeholder="Enter any notes here..." [(ngModel)]="notes"></ion-textarea>\n </ion-item>\n <div *ngIf="payment.length"  style="border-top:1px solid gainsboro; padding-bottom:40px">\n  <div>Payment Method :-</div>\n   <p class="userdetails" [innerHTML]="paycard"> </p>\n   <ion-item text-right no-lines>\n    <button ion-button small outline (click)="showPayment(\'\')">Change</button>\n   </ion-item> \n  </div>\n  <div *ngIf="!payment.length"  style="border-top:1px solid gainsboro"> \n   <div>Choose Payment Method :-</div>\n    <ion-list class="noBottomMargin">\n     <ion-item class="height80 borderBottom" no-lines  *ngFor="let m of pmethods">\n      <div (click)="showPayment(m.id);">\n       <ion-row>\n        <ion-col col-1>\n        </ion-col>\n        <ion-col col-11>\n         <div>\n  	  {{ m.typ }} ending in **** {{ m.last4 }}\n         </div>\n        </ion-col>\n       </ion-row>\n      </div>\n     </ion-item>\n    </ion-list>\n    <button ion-item (click)="showEnterPayment()" class="height80 borderBottom" no-lines>\n		Add Payment Method\n    </button>\n </div>\n</ion-content>\n<ion-footer *ngIf="allok">\n<button ion-button full (click)="doConfirm()" color="secondary" style="font-weight:bold!important">CONFIRM</button>\n</ion-footer>\n'/*ion-inline-end:"/var/www/html/ionic/thai/src/pages/checkout/checkout.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["j" /* ChangeDetectorRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["j" /* ChangeDetectorRef */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__providers_connect__["a" /* Connect */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_connect__["a" /* Connect */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */]) === "function" && _g || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["j" /* ChangeDetectorRef */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_3__providers_connect__["a" /* Connect */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */]])
     ], CheckoutPage);
     return CheckoutPage;
-    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=checkout.js.map
@@ -446,11 +446,11 @@ webpackEmptyAsyncContext.id = 113;
 
 var map = {
 	"../pages/checkout/checkout.module": [
-		278,
+		277,
 		3
 	],
 	"../pages/edititem/edititem.module": [
-		277,
+		278,
 		0
 	],
 	"../pages/enter-credit-card/enter-credit-card.module": [
@@ -1042,8 +1042,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_13__angular_http__["b" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/edititem/edititem.module#EdititemPageModule', name: 'EdititemPage', segment: 'edititem', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/checkout/checkout.module#CheckoutPageModule', name: 'CheckoutPage', segment: 'checkout', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/edititem/edititem.module#EdititemPageModule', name: 'EdititemPage', segment: 'edititem', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/enter-credit-card/enter-credit-card.module#EnterCreditCardPageModule', name: 'EnterCreditCardPage', segment: 'enter-credit-card', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/oneitem/oneitem.module#OneitemPageModule', name: 'OneitemPage', segment: 'oneitem', priority: 'low', defaultHistory: [] }
                     ]
