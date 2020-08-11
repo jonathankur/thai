@@ -1,4 +1,4 @@
-webpackJsonp([4],{
+webpackJsonp([5],{
 
 /***/ 101:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -6,9 +6,9 @@ webpackJsonp([4],{
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CheckoutPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__enter_credit_card_enter_credit_card__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_connect__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_connect__ = __webpack_require__(25);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -156,9 +156,9 @@ var CheckoutPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EnterCreditCardPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_connect__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_stripe__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_connect__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_stripe__ = __webpack_require__(158);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -290,10 +290,76 @@ var EnterCreditCardPage = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HistoryPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_connect__ = __webpack_require__(25);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the HistoryPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var HistoryPage = /** @class */ (function () {
+    function HistoryPage(navCtrl, navParams, connect) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.connect = connect;
+        this.orders = [];
+    }
+    HistoryPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        var that = this;
+        var w = window.localStorage.getItem('userTag');
+        var url = 'gethist.php?me=' + w;
+        console.log(url);
+        this.connect.getList(url).subscribe(function (data) {
+            console.log(data);
+            that.orders = data.orders;
+        }, function (err) {
+            _this.connect.logError(err);
+        });
+    };
+    HistoryPage.prototype.switchme = function (i) {
+        if (this.orders[i].symbol == '+')
+            this.orders[i].symbol = '-';
+        else
+            this.orders[i].symbol = '+';
+    };
+    HistoryPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-history',template:/*ion-inline-start:"/var/www/html/ionic/thai/src/pages/history/history.html"*/'<ion-header no-border no-shadow>\n	<ion-navbar align-title="center" class="backgroundTransparent">\n		<ion-title>THAI ORCHID</ion-title>\n	</ion-navbar>\n</ion-header>\n<ion-content no-padding>\n<ion-row style="color:white; background-color:#32DB64">\n <ion-col col-12 text-center>YOUR HISTORY\n </ion-col>\n</ion-row>\n<ion-list>\n <ion-item *ngFor="let o of orders; let i = index">\n   <ion-row>\n     <ion-col col-11>{{ o.date }}</ion-col>\n     <ion-col col-1 (click)="switchme(i);">{{ o.symbol }}</ion-col>\n   </ion-row>\n   <div *ngIf="o.symbol == \'-\'" > \n    <p [innerHTML]="o.full"> </p>\n       <button ion-button color="secondary">Reorder</button>\n\n   </div>  \n </ion-item>\n</ion-list>\n</ion-content>\n\n'/*ion-inline-end:"/var/www/html/ionic/thai/src/pages/history/history.html"*/,
+        }),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_connect__["a" /* Connect */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_connect__["a" /* Connect */]) === "function" && _c || Object])
+    ], HistoryPage);
+    return HistoryPage;
+    var _a, _b, _c;
+}());
+
+//# sourceMappingURL=history.js.map
+
+/***/ }),
+
+/***/ 104:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OneitemPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_connect__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_connect__ = __webpack_require__(25);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -424,7 +490,7 @@ var OneitemPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 113:
+/***/ 114:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -437,28 +503,32 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 113;
+webpackEmptyAsyncContext.id = 114;
 
 /***/ }),
 
-/***/ 155:
+/***/ 156:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/checkout/checkout.module": [
-		277,
-		3
+		278,
+		4
 	],
 	"../pages/edititem/edititem.module": [
-		278,
+		279,
 		0
 	],
 	"../pages/enter-credit-card/enter-credit-card.module": [
-		279,
+		280,
+		3
+	],
+	"../pages/history/history.module": [
+		281,
 		2
 	],
 	"../pages/oneitem/oneitem.module": [
-		280,
+		282,
 		1
 	]
 };
@@ -473,22 +543,23 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 155;
+webpackAsyncContext.id = 156;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 200:
+/***/ 201:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_connect__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__oneitem_oneitem__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_login__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__checkout_checkout__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_connect__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__oneitem_oneitem__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_login__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__history_history__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__checkout_checkout__ = __webpack_require__(101);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -498,6 +569,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -567,6 +639,12 @@ var HomePage = /** @class */ (function () {
     HomePage.prototype.login = function () {
         this.nav.push(__WEBPACK_IMPORTED_MODULE_4__login_login__["a" /* LoginPage */]);
     };
+    HomePage.prototype.doHistory = function () {
+        if (this.me)
+            this.nav.push(__WEBPACK_IMPORTED_MODULE_5__history_history__["a" /* HistoryPage */]);
+        else {
+        }
+    };
     HomePage.prototype.delitem = function (x) {
         var f = window.localStorage.getItem('cart').split('~');
         var sz = f.length;
@@ -607,7 +685,7 @@ var HomePage = /** @class */ (function () {
         if (!this.me)
             this.login();
         else
-            this.nav.push(__WEBPACK_IMPORTED_MODULE_5__checkout_checkout__["a" /* CheckoutPage */], { total: this.total });
+            this.nav.push(__WEBPACK_IMPORTED_MODULE_6__checkout_checkout__["a" /* CheckoutPage */], { total: this.total });
     };
     HomePage.prototype.gospecials = function () {
         var _this = this;
@@ -677,7 +755,7 @@ var HomePage = /** @class */ (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/var/www/html/ionic/thai/src/pages/home/home.html"*/'<ion-header no-border no-shadow>\n	<ion-navbar align-title="center" class="backgroundTransparent">\n		<button ion-button menuToggle color="dark"><ion-icon name="menu"></ion-icon></button>\n		<ion-title>THAI ORCHID</ion-title>\n	</ion-navbar>\n</ion-header>\n<ion-menu id="mainmenu" [content]="myMenum" style="overflow:hidden" [persistent]=true >\n	<ion-content class="menucontainer">\n		<ion-item-group class="paddingMenu">\n			<button ion-item (click)="doScan()" class="list-item menuitems" menuClose>\n			   Order History\n			</button>\n			<button ion-item (click)="showAccount()" class="list-item menuitems" menuClose>\n			   Specials\n			</button>\n			<button ion-item (click)="orderHistory()" class="list-item menuitems" menuClose>\n			   My Profile\n			</button>\n			<button ion-item (click)="tandc()" class="list-item menuitems" menuClose>\n			   Terms & Conditions\n			</button>\n			<button ion-item (click)="concern()" class="list-item menuitems" menuClose>\n			   Feedback\n			</button>\n	\n			<button ion-item (click)="signOutAlert()" class="list-item menuitems" menuClose>\n			   Sign Out\n			</button>\n			\n		</ion-item-group>\n	</ion-content>\n</ion-menu>\n\n<ion-content #myMenum text-center>\n\n<ion-grid>\n <ion-row text-center>\n  <ion-col col-12>\n    <img src="./assets/img/background.jpg" style="width:100%">\n  </ion-col>\n </ion-row>\n</ion-grid>\n<div *ngIf="menumode==0">\n<ion-grid>\n<ion-row>\n<ion-col col-1>\n</ion-col>\n<ion-col col-10>\n<ion-item no-lines text-wrap text-center>\n<p [innerHTML]="message"></p>\n</ion-item>\n</ion-col>\n<ion-col col-1>\n</ion-col>\n</ion-row>\n</ion-grid>\n\n    <ion-list class="noBottomMargin" *ngIf="mode==0">\n     <ion-item class="height80 borderBottom" no-lines  style="background-color:#1DD15B; color:white; font-size:1.2em">\n       <ion-row>\n       <ion-col col-12 style="text-align:center">\n       <div style="text-align:center">\n	 MENU\n       </div>\n       </ion-col>\n       </ion-row>\n     </ion-item>\n\n     <ion-item class="height80 borderBottom" no-lines  *ngFor="let m of mcats">\n       <div (click)="showCat(m);">\n       <ion-row>\n       <ion-col col-1>\n       </ion-col>\n       <ion-col col-11>\n       <div>\n	{{ m.name }} \n       </div>\n       </ion-col>\n       </ion-row>\n       </div>\n     </ion-item>\n    </ion-list>\n\n    <ion-list class="noBottomMargin" *ngIf="mode==1">\n     <ion-item class="height80 borderBottom" no-lines  style="background-color:#1DD15B; color:white; font-size:1.0em">\n      <div (click)="mode=0;"> \n       <ion-row>\n       <ion-col col-1>\n         <ion-icon name="arrow-back"></ion-icon>\n       </ion-col>\n       <ion-col col-10 style="text-align:center">\n       <div style="text-align:center">\n	 {{ catname }}\n       </div>\n       </ion-col>\n       <ion-col col-1>\n       </ion-col>\n       </ion-row>\n       </div>\n     </ion-item>\n\n     <ion-item class="borderBottom" no-lines  *ngFor="let mi of mitems">\n       <div (click)="showItem(mi.id);">\n       <ion-row>\n       <ion-col col-10 text-wrap>\n       <div>\n	{{ mi.name }} \n       </div>\n       <p [innerHTML]="mi.description" style="font-size:0.8em" text-wrap></p>  \n       </ion-col>\n       <ion-col col-2 style="text-align:right">\n         <p [innerHTML]="mi.price"></p>\n       </ion-col>\n       </ion-row>\n       </div>\n     </ion-item>\n\n    </ion-list>\n</div>\n<div *ngIf="menumode==1">\n <ion-list no-padding>\n   <ion-list-header>\n     <p>Your Order</p>\n   </ion-list-header>\n   <ion-item>\n    <p small>Swipe left on an item to make changes</p>\n   </ion-item>\n   <ion-item-sliding *ngFor="let i of items; let x = index">\n     <ion-item>\n     <ion-row>\n       <ion-col col-9 text-wrap>\n         <p [innerHTML]="i.text"> </p>\n       </ion-col>\n       <ion-col col-3 text-right>\n         {{ i.amount }}\n       </ion-col>\n     </ion-row>\n     </ion-item>\n     <ion-item-options>\n       <button ion-button color="secondary" (click)="edtitem(x)"><ion-icon name="brush"></ion-icon>Edit</button>\n       <button ion-button color="danger" (click)="delitem(x)"><ion-icon name="close"></ion-icon>Delete</button>\n     </ion-item-options>\n  </ion-item-sliding>\n\n   <ion-item-sliding *ngFor="let s of specials; let ss = index">\n     <ion-item style="background-color:#FFFFBB">\n     <ion-row>\n       <ion-col col-9 text-wrap>\n         <p [innerHTML]="s.name"> </p>\n       </ion-col>\n       <ion-col col-3 text-right>\n         {{ s.amount }}\n       </ion-col>\n     </ion-row>\n     </ion-item>\n     <ion-item-options>\n       <button ion-button color="danger" (click)="delspec(ss)"><ion-icon name="close"></ion-icon>Delete</button>\n     </ion-item-options>\n  </ion-item-sliding>\n\n   <ion-item>\n   <ion-row>\n    <ion-col col-9>\n      <p><b>TOTAL</b></p>\n    </ion-col>\n    <ion-col col-3 text-right>\n     <b>{{ total }}</b>\n    </ion-col>\n   </ion-row>\n  </ion-item>\n </ion-list>\n  <ion-item *ngIf="items.length" style="margin-top:25px" no-padding no-lines>\n   <button ion-button full color="secondary" (click)="checkout()" style="padding-top:25px; padding-bottom:25px">Finish Order</button>\n  </ion-item>\n\n</div>\n\n<div *ngIf="menumode==2">\n <div *ngIf="me==0">\n  <ion-row>\n   <ion-col col-1></ion-col>\n   <ion-col col-10>\n   <p text-left>We offer loyalty rewards for users of this App</p>\n   <p text-left>To earn extra prizes, log in or create a free account below</p>\n   <button ion-button (click)="login()" color="secondary">Log In</button>\n   <p text-left>Allow notifications and check back here regularly to find out about our new offers</p>\n   <p text-left>Please click on any reward to apply it to your order</p>\n   </ion-col>\n   <ion-col col-1></ion-col>\n  </ion-row>\n </div>\n <div *ngIf="me>0">\n  <ion-row>\n   <ion-col col-1></ion-col>\n   <ion-col col-10>\n   <p text-left>Hi {{ myname }},</p>\n   <p text-left>Please click on any reward to apply it to your order</p>\n   </ion-col>\n   <ion-col col-1></ion-col>\n  </ion-row>\n </div>\n <ion-card *ngFor="let s of specials" style="background-color:#F6FFF6">\n   <ion-card-header text-wrap>\n       {{ s.title }}\n   </ion-card-header>\n   <ion-card-content text-wrap>\n       {{ s.notes }}\n       <hr>\n       {{ s.statuscode }} &nbsp;\n<button ion-button *ngIf="s.status==0" (click)="gocart(s.id,1)" color="secondary">Apply</button>\n\n   </ion-card-content>\n </ion-card>\n  \n</div>\n</ion-content>\n\n<ion-footer style="background-color:#E6E6E6; padding-top:8px; padding-bottom:8px">\n<ion-grid no-padding>\n<ion-row text-center>\n <ion-col col-4 (click)="menumode=0;">\n <ion-icon name="map"> </ion-icon>\n </ion-col>\n <ion-col col-4 (click)="gocart(0,1);">\n <ion-icon name="list"> </ion-icon>\n </ion-col>\n\n <ion-col col-4 (click)="gospecials();" >\n <ion-icon name="star"> </ion-icon>\n </ion-col>\n\n</ion-row>\n<ion-row text-center style="min-height:30px !important">\n\n <ion-col col-4 (click)="menumode=0;">\n Menu\n </ion-col>\n\n <ion-col col-4 (click)="gocart(0,1);">\n My Order\n<ion-badge color="secondary" *ngIf="items.length">{{ items.length }}</ion-badge>\n </ion-col>\n\n <ion-col col-4 (click)="gospecials();" >\n Rewards\n </ion-col>\n</ion-row>\n\n</ion-grid>\n</ion-footer>\n'/*ion-inline-end:"/var/www/html/ionic/thai/src/pages/home/home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"/var/www/html/ionic/thai/src/pages/home/home.html"*/'<ion-header no-border no-shadow>\n	<ion-navbar align-title="center" class="backgroundTransparent">\n		<button ion-button menuToggle color="dark"><ion-icon name="menu"></ion-icon></button>\n		<ion-title>THAI ORCHID</ion-title>\n	</ion-navbar>\n</ion-header>\n<ion-menu id="mainmenu" [content]="myMenum" style="overflow:hidden" [persistent]=true >\n	<ion-content class="menucontainer">\n		<ion-item-group class="paddingMenu">\n			<button ion-item (click)="doHistory()" class="list-item menuitems" menuClose>\n			   Order History\n			</button>\n			<button ion-item (click)="showAccount()" class="list-item menuitems" menuClose>\n			   Specials\n			</button>\n			<button ion-item (click)="orderHistory()" class="list-item menuitems" menuClose>\n			   My Profile\n			</button>\n			<button ion-item (click)="tandc()" class="list-item menuitems" menuClose>\n			   Terms & Conditions\n			</button>\n			<button ion-item (click)="concern()" class="list-item menuitems" menuClose>\n			   Feedback\n			</button>\n	\n			<button ion-item (click)="signOutAlert()" class="list-item menuitems" menuClose>\n			   Sign Out\n			</button>\n			\n		</ion-item-group>\n	</ion-content>\n</ion-menu>\n\n<ion-content #myMenum text-center>\n\n<ion-grid>\n <ion-row text-center>\n  <ion-col col-12>\n    <img src="./assets/img/background.jpg" style="width:100%">\n  </ion-col>\n </ion-row>\n</ion-grid>\n<div *ngIf="menumode==0">\n<ion-grid>\n<ion-row>\n<ion-col col-1>\n</ion-col>\n<ion-col col-10>\n<ion-item no-lines text-wrap text-center>\n<p [innerHTML]="message"></p>\n</ion-item>\n</ion-col>\n<ion-col col-1>\n</ion-col>\n</ion-row>\n</ion-grid>\n\n    <ion-list class="noBottomMargin" *ngIf="mode==0">\n     <ion-item class="height80 borderBottom" no-lines  style="background-color:#1DD15B; color:white; font-size:1.2em">\n       <ion-row>\n       <ion-col col-12 style="text-align:center">\n       <div style="text-align:center">\n	 MENU\n       </div>\n       </ion-col>\n       </ion-row>\n     </ion-item>\n\n     <ion-item class="height80 borderBottom" no-lines  *ngFor="let m of mcats">\n       <div (click)="showCat(m);">\n       <ion-row>\n       <ion-col col-1>\n       </ion-col>\n       <ion-col col-11>\n       <div>\n	{{ m.name }} \n       </div>\n       </ion-col>\n       </ion-row>\n       </div>\n     </ion-item>\n    </ion-list>\n\n    <ion-list class="noBottomMargin" *ngIf="mode==1">\n     <ion-item class="height80 borderBottom" no-lines  style="background-color:#1DD15B; color:white; font-size:1.0em">\n      <div (click)="mode=0;"> \n       <ion-row>\n       <ion-col col-1>\n         <ion-icon name="arrow-back"></ion-icon>\n       </ion-col>\n       <ion-col col-10 style="text-align:center">\n       <div style="text-align:center">\n	 {{ catname }}\n       </div>\n       </ion-col>\n       <ion-col col-1>\n       </ion-col>\n       </ion-row>\n       </div>\n     </ion-item>\n\n     <ion-item class="borderBottom" no-lines  *ngFor="let mi of mitems">\n       <div (click)="showItem(mi.id);">\n       <ion-row>\n       <ion-col col-10 text-wrap>\n       <div>\n	{{ mi.name }} \n       </div>\n       <p [innerHTML]="mi.description" style="font-size:0.8em" text-wrap></p>  \n       </ion-col>\n       <ion-col col-2 style="text-align:right">\n         <p [innerHTML]="mi.price"></p>\n       </ion-col>\n       </ion-row>\n       </div>\n     </ion-item>\n\n    </ion-list>\n</div>\n<div *ngIf="menumode==1">\n <ion-list no-padding>\n   <ion-list-header>\n     <p>Your Order</p>\n   </ion-list-header>\n   <ion-item>\n    <p small>Swipe left on an item to make changes</p>\n   </ion-item>\n   <ion-item-sliding *ngFor="let i of items; let x = index">\n     <ion-item>\n     <ion-row>\n       <ion-col col-9 text-wrap>\n         <p [innerHTML]="i.text"> </p>\n       </ion-col>\n       <ion-col col-3 text-right>\n         {{ i.amount }}\n       </ion-col>\n     </ion-row>\n     </ion-item>\n     <ion-item-options>\n       <button ion-button color="secondary" (click)="edtitem(x)"><ion-icon name="brush"></ion-icon>Edit</button>\n       <button ion-button color="danger" (click)="delitem(x)"><ion-icon name="close"></ion-icon>Delete</button>\n     </ion-item-options>\n  </ion-item-sliding>\n\n   <ion-item-sliding *ngFor="let s of specials; let ss = index">\n     <ion-item style="background-color:#FFFFBB">\n     <ion-row>\n       <ion-col col-9 text-wrap>\n         <p [innerHTML]="s.name"> </p>\n       </ion-col>\n       <ion-col col-3 text-right>\n         {{ s.amount }}\n       </ion-col>\n     </ion-row>\n     </ion-item>\n     <ion-item-options>\n       <button ion-button color="danger" (click)="delspec(ss)"><ion-icon name="close"></ion-icon>Delete</button>\n     </ion-item-options>\n  </ion-item-sliding>\n\n   <ion-item>\n   <ion-row>\n    <ion-col col-9>\n      <p><b>TOTAL</b></p>\n    </ion-col>\n    <ion-col col-3 text-right>\n     <b>{{ total }}</b>\n    </ion-col>\n   </ion-row>\n  </ion-item>\n </ion-list>\n  <ion-item *ngIf="items.length" style="margin-top:25px" no-padding no-lines>\n   <button ion-button full color="secondary" (click)="checkout()" style="padding-top:25px; padding-bottom:25px">Finish Order</button>\n  </ion-item>\n\n</div>\n\n<div *ngIf="menumode==2">\n <div *ngIf="me==0">\n  <ion-row>\n   <ion-col col-1></ion-col>\n   <ion-col col-10>\n   <p text-left>We offer loyalty rewards for users of this App</p>\n   <p text-left>To earn extra prizes, log in or create a free account below</p>\n   <button ion-button (click)="login()" color="secondary">Log In</button>\n   <p text-left>Allow notifications and check back here regularly to find out about our new offers</p>\n   <p text-left>Please click on any reward to apply it to your order</p>\n   </ion-col>\n   <ion-col col-1></ion-col>\n  </ion-row>\n </div>\n <div *ngIf="me>0">\n  <ion-row>\n   <ion-col col-1></ion-col>\n   <ion-col col-10>\n   <p text-left>Hi {{ myname }},</p>\n   <p text-left>Please click on any reward to apply it to your order</p>\n   </ion-col>\n   <ion-col col-1></ion-col>\n  </ion-row>\n </div>\n <ion-card *ngFor="let s of specials" style="background-color:#F6FFF6">\n   <ion-card-header text-wrap>\n       {{ s.title }}\n   </ion-card-header>\n   <ion-card-content text-wrap>\n       {{ s.notes }}\n       <hr>\n       {{ s.statuscode }} &nbsp;\n<button ion-button *ngIf="s.status==0" (click)="gocart(s.id,1)" color="secondary">Apply</button>\n\n   </ion-card-content>\n </ion-card>\n  \n</div>\n</ion-content>\n\n<ion-footer style="background-color:#E6E6E6; padding-top:8px; padding-bottom:8px">\n<ion-grid no-padding>\n<ion-row text-center>\n <ion-col col-4 (click)="menumode=0;">\n <ion-icon name="map"> </ion-icon>\n </ion-col>\n <ion-col col-4 (click)="gocart(0,1);">\n <ion-icon name="list"> </ion-icon>\n </ion-col>\n\n <ion-col col-4 (click)="gospecials();" >\n <ion-icon name="star"> </ion-icon>\n </ion-col>\n\n</ion-row>\n<ion-row text-center style="min-height:30px !important">\n\n <ion-col col-4 (click)="menumode=0;">\n Menu\n </ion-col>\n\n <ion-col col-4 (click)="gocart(0,1);">\n My Order\n<ion-badge color="secondary" *ngIf="items.length">{{ items.length }}</ion-badge>\n </ion-col>\n\n <ion-col col-4 (click)="gospecials();" >\n Rewards\n </ion-col>\n</ion-row>\n\n</ion-grid>\n</ion-footer>\n'/*ion-inline-end:"/var/www/html/ionic/thai/src/pages/home/home.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */], __WEBPACK_IMPORTED_MODULE_2__providers_connect__["a" /* Connect */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["j" /* ChangeDetectorRef */]])
     ], HomePage);
@@ -688,15 +766,15 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 201:
+/***/ 202:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_connect__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__register_register__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_connect__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__register_register__ = __webpack_require__(203);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -884,14 +962,14 @@ var LoginPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 202:
+/***/ 203:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_connect__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_connect__ = __webpack_require__(25);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -968,13 +1046,13 @@ var RegisterPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 203:
+/***/ 204:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(227);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -982,32 +1060,34 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 226:
+/***/ 227:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(276);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_oneitem_oneitem__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_login_login__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_register_register__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_checkout_checkout__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_enter_credit_card_enter_credit_card__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_connect__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_http__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_stripe__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_oneitem_oneitem__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_login_login__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_register_register__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_history_history__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_checkout_checkout__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_enter_credit_card_enter_credit_card__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_connect__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_http__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_stripe__ = __webpack_require__(158);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -1033,18 +1113,20 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_6__pages_home_home__["a" /* HomePage */],
                 __WEBPACK_IMPORTED_MODULE_8__pages_login_login__["a" /* LoginPage */],
                 __WEBPACK_IMPORTED_MODULE_9__pages_register_register__["a" /* RegisterPage */],
-                __WEBPACK_IMPORTED_MODULE_10__pages_checkout_checkout__["a" /* CheckoutPage */],
-                __WEBPACK_IMPORTED_MODULE_11__pages_enter_credit_card_enter_credit_card__["a" /* EnterCreditCardPage */],
+                __WEBPACK_IMPORTED_MODULE_10__pages_history_history__["a" /* HistoryPage */],
+                __WEBPACK_IMPORTED_MODULE_11__pages_checkout_checkout__["a" /* CheckoutPage */],
+                __WEBPACK_IMPORTED_MODULE_12__pages_enter_credit_card_enter_credit_card__["a" /* EnterCreditCardPage */],
                 __WEBPACK_IMPORTED_MODULE_7__pages_oneitem_oneitem__["a" /* OneitemPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_13__angular_http__["b" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_14__angular_http__["b" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/checkout/checkout.module#CheckoutPageModule', name: 'CheckoutPage', segment: 'checkout', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edititem/edititem.module#EdititemPageModule', name: 'EdititemPage', segment: 'edititem', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/enter-credit-card/enter-credit-card.module#EnterCreditCardPageModule', name: 'EnterCreditCardPage', segment: 'enter-credit-card', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/history/history.module#HistoryPageModule', name: 'HistoryPage', segment: 'history', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/oneitem/oneitem.module#OneitemPageModule', name: 'OneitemPage', segment: 'oneitem', priority: 'low', defaultHistory: [] }
                     ]
                 })
@@ -1055,15 +1137,16 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_6__pages_home_home__["a" /* HomePage */],
                 __WEBPACK_IMPORTED_MODULE_8__pages_login_login__["a" /* LoginPage */],
                 __WEBPACK_IMPORTED_MODULE_9__pages_register_register__["a" /* RegisterPage */],
-                __WEBPACK_IMPORTED_MODULE_11__pages_enter_credit_card_enter_credit_card__["a" /* EnterCreditCardPage */],
-                __WEBPACK_IMPORTED_MODULE_10__pages_checkout_checkout__["a" /* CheckoutPage */],
+                __WEBPACK_IMPORTED_MODULE_10__pages_history_history__["a" /* HistoryPage */],
+                __WEBPACK_IMPORTED_MODULE_12__pages_enter_credit_card_enter_credit_card__["a" /* EnterCreditCardPage */],
+                __WEBPACK_IMPORTED_MODULE_11__pages_checkout_checkout__["a" /* CheckoutPage */],
                 __WEBPACK_IMPORTED_MODULE_7__pages_oneitem_oneitem__["a" /* OneitemPage */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__["a" /* StatusBar */],
                 __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
-                __WEBPACK_IMPORTED_MODULE_14__ionic_native_stripe__["a" /* Stripe */],
-                __WEBPACK_IMPORTED_MODULE_12__providers_connect__["a" /* Connect */],
+                __WEBPACK_IMPORTED_MODULE_15__ionic_native_stripe__["a" /* Stripe */],
+                __WEBPACK_IMPORTED_MODULE_13__providers_connect__["a" /* Connect */],
                 { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicErrorHandler */] }
             ]
         })
@@ -1075,59 +1158,13 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 276:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(200);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var MyApp = /** @class */ (function () {
-    function MyApp(platform, statusBar, splashScreen) {
-        this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */];
-        platform.ready().then(function () {
-            // Okay, so the platform is ready and our plugins are available.
-            // Here you can do any higher level native things you might need.
-            statusBar.styleDefault();
-            splashScreen.hide();
-        });
-    }
-    MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/var/www/html/ionic/thai/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/var/www/html/ionic/thai/src/app/app.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
-    ], MyApp);
-    return MyApp;
-}());
-
-//# sourceMappingURL=app.component.js.map
-
-/***/ }),
-
-/***/ 29:
+/***/ 25:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Connect; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__(252);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1172,7 +1209,53 @@ var Connect = /** @class */ (function () {
 
 //# sourceMappingURL=connect.js.map
 
+/***/ }),
+
+/***/ 277:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(201);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var MyApp = /** @class */ (function () {
+    function MyApp(platform, statusBar, splashScreen) {
+        this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */];
+        platform.ready().then(function () {
+            // Okay, so the platform is ready and our plugins are available.
+            // Here you can do any higher level native things you might need.
+            statusBar.styleDefault();
+            splashScreen.hide();
+        });
+    }
+    MyApp = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/var/www/html/ionic/thai/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/var/www/html/ionic/thai/src/app/app.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+    ], MyApp);
+    return MyApp;
+}());
+
+//# sourceMappingURL=app.component.js.map
+
 /***/ })
 
-},[203]);
+},[204]);
 //# sourceMappingURL=main.js.map
